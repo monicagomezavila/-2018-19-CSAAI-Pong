@@ -52,7 +52,7 @@ function main()
     y : 0,
 
     //De esto depende el angulo de rebote
-    vel_x : 3,
+    vel_x : 2,
     vel_y : 1,
 
     ctx : null,
@@ -77,9 +77,18 @@ function main()
     },
 
     update : function() {
-      console.log("update")
       this.x = this.x + this.vel_x;
       this.y = this.y +this.vel_y;
+      console.log(this.x);
+      console.log(this.y);
+    },
+
+    hit : function(){
+      rnd = Math.random();
+      console.log(rnd);
+      v_total = this.vel_x + this.vel_y;
+      this.vel_x = rnd * v_total * (-1);
+      this.vel_y = (1-rnd) * v_total * (-1);
     }
   }
 
@@ -100,12 +109,13 @@ function main()
         bola.update();
         ctx.clearRect(0,0,canvas.width, canvas.height)
         bola.draw();
-        //--Condicion de terminar, mcuando salga del canvas para
-        if (bola.x > canvas.width){
-          clearInterval(timer);
-          timer = null;
+        //--Condicion de choque con el canvas
+        if (bola.x > canvas.width || bola.y > canvas.height){
+          //clearInterval(timer);
+          //timer = null;
           //reiniciar bola posicion inicializa
-          bola.reset();
+          //bola.reset();
+          bola.hit();
           bola.draw();
         }
 
