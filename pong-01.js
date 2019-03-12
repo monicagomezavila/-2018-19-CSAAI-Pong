@@ -28,6 +28,8 @@ function main(){
     ctx.clearRect(0,0,canvas.width, canvas.height)
     bola.draw();
     playing_field.draw();
+    campo.draw(ctx);
+    marcador.draw(ctx);
   }
 
 // MI BOLA
@@ -66,9 +68,15 @@ function main(){
     },
 
     // Iniciaas el juego
-    init : function(ctx) {
+    init : function(ctx,prueba) {
       this.reset();
       this.ctx = ctx;
+      if (prueba == "player1") {
+        this.x = 450;
+        this.y = 200;
+        this.vel_x = (-1) * this.vel_x;
+        this.vel_y = (-1) * this.vel_x;
+      }
     },
 
     //Dibujas la bola
@@ -187,7 +195,7 @@ function main(){
 
 
   //se inicializa bola
-  bola.init(ctx);
+  bola.init(ctx,prueba);
   bola.draw();
 
   playing_field.init(ctx);
@@ -196,6 +204,7 @@ function main(){
   marcador.draw(ctx);
 
   //ANIMANDO
+  var prueba = "player1";
   var timer = null;
 
   var sacar = document.getElementById("sacar");
@@ -222,10 +231,12 @@ function main(){
           ctx.clearRect(0,0,canvas.width, canvas.height)
           if (bola.x >= canvas.width){
             marcador.point("true");
+            prueba = "player1";
           }else{
             marcador.point("false");
+            prueba = "player2";
           }
-          bola.init(ctx);
+          bola.init(ctx,prueba);
 
         }
 
@@ -238,12 +249,11 @@ function main(){
           bola.hit_shovel();
 
         }
+
         bola.draw();
         playing_field.draw();
         campo.draw(ctx);
         marcador.draw(ctx);
-
-
       }, 20)
     }
   }
