@@ -1,5 +1,4 @@
-function main()
-{
+function main(){
 
   var canvas = document.getElementById('display')
   canvas.width = 600;
@@ -7,10 +6,9 @@ function main()
 
   var ctx = canvas.getContext("2d");
 
-  //sacar coasas del navegador o ver cosas que maneje el navegador
+  // Evento que escucha al teclado para el movimiento de las palas
   window.onkeydown = (event) => {
-    //para usar solo tu la tecla que no la utilice el navegadop
-    console.log(event.key);
+    // Para usar solo tu la tecla y que no la pueda utilizar el navegador
     event.preventDefault();
     if (event.key == "w") {
       playing_field.update(-20, "true");
@@ -32,24 +30,9 @@ function main()
     playing_field.draw();
   }
 
-/*
-  ctx.beginPath();
-  ctx.strokeStyle = "white";
-  ctx.setLineDash([5, 5]);
-  ctx.moveTo(canvas.width/2, 0);
-  ctx.lineTo(canvas.width/2, canvas.height);
-  ctx.stroke();
+// MI BOLA
 
-  ctx.font = "60px Arial";
-  ctx.fillStyle = 'white';
-  ctx.fillText("0", 150, 50);
-  ctx.fillText("0", 430, 50);
-  */
-
-
-// MI BOLAAAAAAA
   var bola = {
-
     //Posicion inicial
     x_ini : 150,
     y_ini :200,
@@ -73,7 +56,7 @@ function main()
     width : 5,
     height : 5,
 
-    //  Vuelves a la posicion inicila de la bola
+    //  Vuelves a la posicion inicial de la bola
     reset :function() {
       this.x = this.x_ini;
       this.y = this.y_ini;
@@ -94,7 +77,7 @@ function main()
       this.ctx.fillRect(this.x, this.y, this.width, this.height);
     },
 
-    // Actializas posicion de la bola
+    // Actualizas posicion de la bola
     update : function() {
       this.x = this.x + this.vel_x;
       this.y = this.y +this.vel_y;
@@ -103,12 +86,10 @@ function main()
     // Cuando la bola rebote
     hit : function(){
       //rnd = Math.random();
-      //console.log(rnd);
-      //v_total = this.vel_x + this.vel_y;
-      //this.vel_x = this.vel_x * (-1);
       this.vel_y = this.vel_y * (-1);
     },
 
+    // Choque con una de las palas
     hit_shovel : function(){
       this.vel_y = this.vel_y * (-1);
       this.vel_x = this.vel_x * (-1);
@@ -117,7 +98,7 @@ function main()
 
 
 
-// MI ZONA DE JUEGOOO
+// MI ZONA DE JUEGO
 
   var playing_field = {
     //Posicion inicial PALA 1
@@ -136,7 +117,7 @@ function main()
     x2 : 0,
     y2 : 0,
 
-    //contexto que se le pasara como parametro
+    //Contexto que se le pasara como parametro
     ctx : null,
 
     init : function(ctx) {
@@ -183,12 +164,22 @@ function main()
 
   var marcador = {
     ctx : null,
+    player1 : 0,
+    player2 : 0,
     draw : function(ctx){
       this.ctx = ctx;
       this.ctx.font = "60px Arial";
       this.ctx.fillStyle = 'white';
-      this.ctx.fillText("0", 150, 50);
-      this.ctx.fillText("0", 430, 50);
+      this.ctx.fillText(this.player1, 150, 50);
+      this.ctx.fillText(this.player2, 430, 50);
+    },
+
+    point : function(boolean){
+      if (boolean == "true") {
+        this.player1 += 1;
+      }else{
+        this.player2 += 1;
+      }
     }
   }
 
@@ -221,12 +212,7 @@ function main()
 
         //--Condicion de choque con el canvas
         if (bola.y <= 0 || bola.y >= canvas.height){
-          //clearInterval(timer);
-          //timer = null;
-          //reiniciar bola posicion inicializa
-          //bola.reset();
           bola.hit();
-
         }
 
         // Cuando pierde un jugador
@@ -234,8 +220,12 @@ function main()
           clearInterval(timer);
           timer = null;
           ctx.clearRect(0,0,canvas.width, canvas.height)
+          if (bola.x >= canvas.width){
+            marcador.point("true");
+          }else{
+            marcador.point("false");
+          }
           bola.init(ctx);
-
 
         }
 
