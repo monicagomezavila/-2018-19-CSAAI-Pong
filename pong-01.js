@@ -122,7 +122,7 @@ function main()
   var playing_field = {
     //Posicion inicial PALA 1
     x_ini1 : 50,
-    y_ini1 :50,
+    y_ini1 :180,
 
     //Posiciones movimiento PALA 1
     x1 : 0,
@@ -130,7 +130,7 @@ function main()
 
     //Posicion inicial PALA 2
     x_ini2 : 550,
-    y_ini2 :310,
+    y_ini2 :180,
 
     //Posiciones movimiento PALA 2
     x2 : 0,
@@ -168,6 +168,30 @@ function main()
   }
 
 
+  var campo = {
+    ctx : null,
+    draw : function(ctx){
+      this.ctx = ctx;
+      this.ctx.beginPath();
+      this.ctx.strokeStyle = "white";
+      this.ctx.setLineDash([5, 5]);
+      this.ctx.moveTo(canvas.width/2, 0);
+      this.ctx.lineTo(canvas.width/2, canvas.height);
+      this.ctx.stroke();
+    }
+  }
+
+  var marcador = {
+    ctx : null,
+    draw : function(ctx){
+      this.ctx = ctx;
+      this.ctx.font = "60px Arial";
+      this.ctx.fillStyle = 'white';
+      this.ctx.fillText("0", 150, 50);
+      this.ctx.fillText("0", 430, 50);
+    }
+  }
+
   // PROGRAMA PRINCIPAL
 
 
@@ -177,6 +201,8 @@ function main()
 
   playing_field.init(ctx);
   playing_field.draw();
+  campo.draw(ctx);
+  marcador.draw(ctx);
 
   //ANIMANDO
   var timer = null;
@@ -190,8 +216,7 @@ function main()
         //--Actualizar bola, saber nueva posicion en bola UPDATE
         bola.update();
         ctx.clearRect(0,0,canvas.width, canvas.height)
-        bola.draw();
-        playing_field.draw();
+
 
 
         //--Condicion de choque con el canvas
@@ -201,8 +226,7 @@ function main()
           //reiniciar bola posicion inicializa
           //bola.reset();
           bola.hit();
-          bola.draw();
-          playing_field.draw();
+
         }
 
         // Cuando pierde un jugador
@@ -211,22 +235,23 @@ function main()
           timer = null;
           ctx.clearRect(0,0,canvas.width, canvas.height)
           bola.init(ctx);
-          bola.draw();
-          playing_field.draw();
+
 
         }
 
         if (playing_field.x2 <= bola.x && bola.x <= (playing_field.x2+10) && playing_field.y2 <= bola.y && bola.y <= (playing_field.y2+40)){
           bola.hit_shovel();
-          bola.draw();
-          playing_field.draw();
+
         }
 
         if (playing_field.x1 <= bola.x && bola.x <= (playing_field.x1+10) && playing_field.y1 <= bola.y && bola.y <= (playing_field.y1+40)){
           bola.hit_shovel();
-          bola.draw();
-          playing_field.draw();
+
         }
+        bola.draw();
+        playing_field.draw();
+        campo.draw(ctx);
+        marcador.draw(ctx);
 
 
       }, 20)
