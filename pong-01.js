@@ -11,29 +11,30 @@ function main(){
     // Para usar solo tu la tecla y que no la pueda utilizar el navegador
     event.preventDefault();
     if (event.key == "w") {
-      playing_field.update(-20, "true");
+      pala1.update(-20);
     }
 
     if (event.key == "s") {
-      playing_field.update(20, "true");
+      pala1.update(20);
     }
 
     if (event.key == "ArrowUp") {
-      playing_field.update(-20, "false");
+      pala2.update(-20);
     }
 
     if (event.key == "ArrowDown") {
-      playing_field.update(20, "false");
+      pala2.update(20);
     }
     ctx.clearRect(0,0,canvas.width, canvas.height)
     bola.draw();
-    playing_field.draw();
     campo.draw(ctx);
     marcador.draw(ctx);
+    pala1.draw();
+    pala2.draw();
   }
 
-// MI BOLA
 
+// MI BOLA
   var bola = {
     //Posicion inicial
     x_ini : 150,
@@ -107,59 +108,41 @@ function main(){
     }
   }
 
+//Constructor PALA
+function pala(x,y){
 
+  console.log("hola");
 
-// MI ZONA DE JUEGO
+  this.ctx = null;
 
-  var playing_field = {
-    //Posicion inicial PALA 1
-    x_ini1 : 50,
-    y_ini1 :180,
+  this.x_ini = x;
+  this.y_ini = y;
 
-    //Posiciones movimiento PALA 1
-    x1 : 0,
-    y1 : 0,
+  x = 0;
+  y = 0;
 
-    //Posicion inicial PALA 2
-    x_ini2 : 550,
-    y_ini2 :180,
-
-    //Posiciones movimiento PALA 2
-    x2 : 0,
-    y2 : 0,
-
-    //Contexto que se le pasara como parametro
-    ctx : null,
-
-    init : function(ctx) {
-      this.reset();
-      this.ctx = ctx;
-    },
-
-    reset :function() {
-      this.x1 = this.x_ini1;
-      this.y1 = this.y_ini1;
-
-      this.x2 = this.x_ini2;
-      this.y2 = this.y_ini2;
-    },
-
-    draw : function() {
-      this.ctx.fillStyle = "white";
-      ctx.fillRect(this.x1,this.y1,10,40);
-      ctx.fillRect(this.x2,this.y2,10,40);
-    },
-
-    update : function(cant,  boolean) {
-      if (boolean == "true"){
-        this.y1 = this.y1 + cant;
-      }else{
-        this.y2 = this.y2 + cant;
-      }
-    }
+  this.reset = function() {
+    this.x = this.x_ini;
+    this.y = this.y_ini;
   }
 
+  this.init = function(ctx) {
+    this.reset();
+    this.ctx = ctx;
+  }
 
+  this.draw = function() {
+    this.ctx.fillStyle = "white";
+    this.ctx.fillRect(this.x,this.y,10,40);
+    this.ctx.fillRect(this.x,this.y,10,40);
+  }
+
+  this.update = function(cant) {
+    this.y = this.y + cant;
+  }
+}
+
+//Campò de juego
   var campo = {
     ctx : null,
     draw : function(ctx){
@@ -173,6 +156,7 @@ function main(){
     }
   }
 
+// Marcador
   var marcador = {
     ctx : null,
     player1 : 0,
@@ -194,15 +178,20 @@ function main(){
     }
   }
 
+
+
   // PROGRAMA PRINCIPAL
 
+  var pala1 = new pala(70,180);
+  var pala2 = new pala(530,180);
+  pala1.init(ctx);
+  pala1.draw();
+  pala2.init(ctx);
+  pala2.draw();
 
-  //se inicializa bola
 
   bola.init(ctx,prueba);
   bola.draw();
-  playing_field.init(ctx);
-  playing_field.draw();
   campo.draw(ctx);
   marcador.draw(ctx);
 
@@ -219,8 +208,6 @@ function main(){
         //--Actualizar bola, saber nueva posicion en bola UPDATE
         bola.update();
         ctx.clearRect(0,0,canvas.width, canvas.height)
-
-
 
         //--Condicion de choque con el canvas
         if (bola.y <= 0 || bola.y >= canvas.height){
@@ -242,18 +229,21 @@ function main(){
           bola.init(ctx,prueba);
         }
 
-        if (playing_field.x2 <= bola.x && bola.x <= (playing_field.x2+10) && playing_field.y2 <= bola.y && bola.y <= (playing_field.y2+40)){
+
+        if (pala2.x <= bola.x && bola.x <= (pala2.x+10) && pala2.y <= bola.y && bola.y <= (pala2.y+40)){
           bola.hit_shovel();
         }
 
-        if (playing_field.x1 <= bola.x && bola.x <= (playing_field.x1+10) && playing_field.y1 <= bola.y && bola.y <= (playing_field.y1+40)){
+        if (pala1.x <= bola.x && bola.x <= (pala1.x+10) && pala1.y <= bola.y && (bola.y<= pala1.y+40)){
+          console.log("eyy")
           bola.hit_shovel();
         }
 
         bola.draw();
-        playing_field.draw();
         campo.draw(ctx);
         marcador.draw(ctx);
+        pala1.draw();
+        pala2.draw();
       }, 20)
     }
   }
