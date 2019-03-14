@@ -95,23 +95,22 @@ function main(){
     // Cuando la bola rebote
     hit : function(){
       //rnd = Math.random();
-      var n = null;
-      n = Math.random();
-      console.log(n)
       this.vel_y = this.vel_y * (-1);
     },
 
-    // Choque con una de las palas
+    // Choque con una de las palas con misma velocidad pero distinto angulo de rebote
     hit_shovel : function(){
-      this.vel_y = this.vel_y * (-1);
-      this.vel_x = this.vel_x * (-1);
+      var n = null;
+      n = Math.random();
+      vel_total = Math.abs(this.vel_y) + Math.abs(this.vel_x)
+      console.log(vel_total);
+      this.vel_y = Math.sign(this.vel_y) * (-1) * vel_total * n;
+      this.vel_x = Math.sign(this.vel_x) * (-1) * vel_total * (1-n);
     }
   }
 
 //Constructor PALA
 function pala(x,y){
-
-  console.log("hola");
 
   this.ctx = null;
 
@@ -161,6 +160,7 @@ function pala(x,y){
     ctx : null,
     player1 : 0,
     player2 : 0,
+
     draw : function(ctx){
       this.ctx = ctx;
       this.ctx.font = "60px Arial";
@@ -189,7 +189,6 @@ function pala(x,y){
   pala2.init(ctx);
   pala2.draw();
 
-
   bola.init(ctx,prueba);
   bola.draw();
   campo.draw(ctx);
@@ -216,9 +215,12 @@ function pala(x,y){
 
         // Cuando pierde un jugador
         if (bola.x <= 0 || bola.x >= canvas.width){
+
           clearInterval(timer);
           timer = null;
           ctx.clearRect(0,0,canvas.width, canvas.height)
+
+          // REVISAR ESTA CONDICION
           if (bola.x >= canvas.width){
             marcador.point("true");
             prueba = "player1";
@@ -235,7 +237,6 @@ function pala(x,y){
         }
 
         if (pala1.x <= bola.x && bola.x <= (pala1.x+10) && pala1.y <= bola.y && (bola.y<= pala1.y+40)){
-          console.log("eyy")
           bola.hit_shovel();
         }
 
