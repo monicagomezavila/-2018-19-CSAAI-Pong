@@ -213,18 +213,21 @@ function pala(x,y){
 
 
   vel1.onclick = () => {
+    console.log("HAS ELEGIDO DIFICULTAD 1")
     bola.vel_x_init = 1;
     bola.vel_y_init = 2;
     bola.reset()
   }
 
   vel2.onclick = () => {
+    console.log("HAS ELEGIDO DIFICULTAD 2")
     bola.vel_x_init = 2;
     bola.vel_y_init = 4;
     bola.reset()
   }
 
   vel3.onclick = () => {
+    console.log("HAS ELEGIDO DIFICULTAD 3")
     bola.vel_x_init = 4;
     bola.vel_y_init = 6;
     bola.reset()
@@ -232,8 +235,6 @@ function pala(x,y){
 
   sacar.onclick = () => {
     //Sólo activa timer si no ha sido ya activado
-    console.log(bola.vel_x_init)
-    console.log(bola.vel_y_init)
     if (!timer) {
       timer = setInterval(()=>{
         //--Actualizar bola, saber nueva posicion en bola UPDATE
