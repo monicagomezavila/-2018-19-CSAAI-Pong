@@ -45,8 +45,14 @@ function main(){
     y : 0,
 
     //De esto depende el angulo de rebote. Lo que se mueve en cada eje
-    vel_x_init : 1,
-    vel_y_init : 2,
+    vel_x_init : null,
+    vel_y_init : null,
+
+    velocidad : function(x,y){
+      this.vel_x_init = x;
+      console.log(this.vel_x_init)
+      this.vel_y_init = y;
+    },
 
     // Velocidad del juego
     vel_x : 0,
@@ -89,6 +95,8 @@ function main(){
     // Actualizas posicion de la bola
     update : function() {
       this.x = this.x + this.vel_x;
+      console.log(this.vel_x)
+      console.log(this.x)
       this.y = this.y +this.vel_y;
     },
 
@@ -200,8 +208,32 @@ function pala(x,y){
 
   var sacar = document.getElementById("sacar");
 
+  var vel1 = document.getElementById("vel1");
+  var vel2 = document.getElementById("vel2");
+
+
+  vel1.onclick = () => {
+    bola.vel_x_init = 1;
+    bola.vel_y_init = 2;
+    bola.reset()
+  }
+
+  vel2.onclick = () => {
+    bola.vel_x_init = 2;
+    bola.vel_y_init = 4;
+    bola.reset()
+  }
+
+  vel3.onclick = () => {
+    bola.vel_x_init = 4;
+    bola.vel_y_init = 6;
+    bola.reset()
+  }
+
   sacar.onclick = () => {
     //Sólo activa timer si no ha sido ya activado
+    console.log(bola.vel_x_init)
+    console.log(bola.vel_y_init)
     if (!timer) {
       timer = setInterval(()=>{
         //--Actualizar bola, saber nueva posicion en bola UPDATE
