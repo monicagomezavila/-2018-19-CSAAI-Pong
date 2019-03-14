@@ -94,6 +94,9 @@ function main(){
     // Cuando la bola rebote
     hit : function(){
       //rnd = Math.random();
+      var n = null;
+      n = Math.random();
+      console.log(n)
       this.vel_y = this.vel_y * (-1);
     },
 
@@ -195,9 +198,9 @@ function main(){
 
 
   //se inicializa bola
+
   bola.init(ctx,prueba);
   bola.draw();
-
   playing_field.init(ctx);
   playing_field.draw();
   campo.draw(ctx);
@@ -237,17 +240,14 @@ function main(){
             prueba = "player2";
           }
           bola.init(ctx,prueba);
-
         }
 
         if (playing_field.x2 <= bola.x && bola.x <= (playing_field.x2+10) && playing_field.y2 <= bola.y && bola.y <= (playing_field.y2+40)){
           bola.hit_shovel();
-
         }
 
         if (playing_field.x1 <= bola.x && bola.x <= (playing_field.x1+10) && playing_field.y1 <= bola.y && bola.y <= (playing_field.y1+40)){
           bola.hit_shovel();
-
         }
 
         bola.draw();
