@@ -1,13 +1,57 @@
 body{
   margin-left: auto;
   margin-right: auto;
-  background-color: lightblue;
-  border: 1.5px outset black;
-  border-radius: 80px;
-  width: 800px;
-  height: 1000px;
-
+  /*background-color: #E7E7E7;*/
 }
+
+.seccion1{
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #696969;
+  border: 3px outset black;
+  border-radius: 50px;
+  width: 500px;
+  height: 70px;
+  margin-top: 15px;
+}
+
+#derecha{
+  margin-left: auto;
+  margin-right: auto;
+  float:right;
+  width: 200px;
+  height: 90px;
+
+  font: oblique bold 100% cursive;
+  letter-spacing: 2px;
+  text-align: center;
+  font-size: 15px;
+}
+
+#izquierda{
+  margin-left: auto;
+  margin-right: auto;
+  float:left;
+  width: 200px;
+  height: 90px;
+
+  font: oblique bold 100% cursive;
+  letter-spacing: 2px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.seccion2{
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #908B7D;
+  border: 3px outset black;
+  border-radius: 50px;
+  width: 500px;
+  height: 70px;
+  margin-top: 15px;
+}
+
 
 #image{
   width: 200px;
@@ -29,21 +73,33 @@ body{
     padding-top:0px;
 }
 
+#game{
+  width: 800px;
+  height: 1000px;
+  border: 3px outset black;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50px;
+  background-color: #D8D8D8;
+  box-shadow:30px 1px #565656;
+  border-style:groove;
+}
+
 button{
-  background-color: #C6D4E0;
-  border-radius: 10px;
+  background-color: #CC1027;
   color: black;
-  text-align: center;
-  padding: 10px 10px;
   font-size: 20px;
-  margin: 5px 5px;
   cursor: pointer;
   -webkit-transition-duration: 0.4s;
   transition-duration: 0.4s;
+  width: 80px;
+  height: 30px;
+  border-radius: 10px;
+
+  margin: -15px -15px;
+
 }
 
 button:hover {
-  background-image: url("css.jpg");
-  /*background-color: #3A5163;
-  color: white;
+  background-color: #A8001F;
 }
