@@ -4,6 +4,15 @@ body{
   /*background-color: #E7E7E7;*/
 }
 
+#mark{
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 100px;
+  font-weight: 900;
+  font: oblique bold 100% monospace;
+  font-size: 15px
+}
+
 .seccion1{
   margin-left: auto;
   margin-right: auto;
@@ -12,7 +21,7 @@ body{
   border-radius: 50px;
   width: 500px;
   height: 70px;
-  margin-top: 15px;
+  margin-top: 20px;
 }
 
 #derecha{
@@ -23,6 +32,7 @@ body{
   height: 90px;
 
   font: oblique bold 100% cursive;
+  font-weight: 1000;
   letter-spacing: 2px;
   text-align: center;
   font-size: 15px;
@@ -36,6 +46,7 @@ body{
   height: 90px;
 
   font: oblique bold 100% cursive;
+  font-weight: 1000;
   letter-spacing: 2px;
   text-align: center;
   font-size: 15px;
@@ -44,12 +55,18 @@ body{
 .seccion2{
   margin-left: auto;
   margin-right: auto;
-  background-color: #908B7D;
+  background-color: #696969;
   border: 3px outset black;
   border-radius: 50px;
   width: 500px;
   height: 70px;
-  margin-top: 15px;
+  margin-top: 20px;
+
+  font: oblique bold 100% cursive;
+  font-weight: 1000;
+  letter-spacing: 2px;
+  text-align: center;
+  font-size: 15px;
 }
 
 
@@ -92,14 +109,22 @@ button{
   cursor: pointer;
   -webkit-transition-duration: 0.4s;
   transition-duration: 0.4s;
-  width: 80px;
-  height: 30px;
   border-radius: 10px;
-
-  margin: -15px -15px;
 
 }
 
-button:hover {
+#sacar, #reiniciar{
+  margin: -15px -15px;
+  width: 80px;
+  height: 30px;
+}
+
+#vel1, #vel2, #vel3{
+  margin: -15px 15px;
+  width: 100px;
+  height: 30px;
+}
+
+.button:hover {
   background-color: #A8001F;
 }
