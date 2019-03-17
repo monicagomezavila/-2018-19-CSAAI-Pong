@@ -33,7 +33,6 @@ function main(){
     pala2.draw();
   }
 
-
 // MI BOLA
   var bola = {
     //Posicion inicial
@@ -50,7 +49,6 @@ function main(){
 
     velocidad : function(x,y){
       this.vel_x_init = x;
-      console.log(this.vel_x_init)
       this.vel_y_init = y;
     },
 
@@ -62,8 +60,7 @@ function main(){
     ctx : null,
 
     //Bola cuadrada
-    width : 5,
-    height : 5,
+    ratio : 7,
 
     //  Vuelves a la posicion inicial de la bola
     reset :function() {
@@ -88,15 +85,16 @@ function main(){
 
     //Dibujas la bola
     draw : function() {
-      this.ctx.fillStyle = "white";
-      this.ctx.fillRect(this.x, this.y, this.width, this.height);
+      this.ctx.beginPath();
+      this.ctx.arc(this.x,this.y, this.ratio, 0, 2 * Math.PI);
+      this.ctx.stroke()
+      this.ctx.fillStyle = "lightblue";
+      this.ctx.fill();
     },
 
     // Actualizas posicion de la bola
     update : function() {
       this.x = this.x + this.vel_x;
-      console.log(this.vel_x)
-      console.log(this.x)
       this.y = this.y +this.vel_y;
     },
 
@@ -110,8 +108,7 @@ function main(){
     hit_shovel : function(){
       var n = null;
       n = Math.random();
-      vel_total = Math.abs(this.vel_y) + Math.abs(this.vel_x)
-      console.log(vel_total);
+      vel_total = Math.abs(this.vel_y) + Math.abs(this.vel_x);
       this.vel_y = Math.sign(this.vel_y) * (-1) * vel_total * n;
       this.vel_x = Math.sign(this.vel_x) * (-1) * vel_total * (1-n);
     }
@@ -145,7 +142,11 @@ function pala(x,y){
   }
 
   this.update = function(cant) {
-    this.y = this.y + cant;
+    if (((this.y + cant+20) < canvas.height) && (this.y + cant+20)>0){
+      this.y = this.y + cant;
+    }else{
+      this.y = this.y;
+    }
   }
 }
 
@@ -220,7 +221,6 @@ function pala(x,y){
 
 
   reiniciar.onclick = () => {
-    console.log("reiniciar")
     bola.reset();
     pala1.reset();
     pala2.reset();
@@ -237,21 +237,18 @@ function pala(x,y){
   }
 
   vel1.onclick = () => {
-    console.log("HAS ELEGIDO DIFICULTAD 1")
     bola.vel_x_init = 1;
     bola.vel_y_init = 2;
     bola.reset()
   }
 
   vel2.onclick = () => {
-    console.log("HAS ELEGIDO DIFICULTAD 2")
     bola.vel_x_init = 2;
     bola.vel_y_init = 4;
     bola.reset()
   }
 
   vel3.onclick = () => {
-    console.log("HAS ELEGIDO DIFICULTAD 3")
     bola.vel_x_init = 4;
     bola.vel_y_init = 6;
     bola.reset()
