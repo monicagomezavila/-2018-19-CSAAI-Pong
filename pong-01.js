@@ -183,6 +183,11 @@ function pala(x,y){
       }else{
         this.player2 += 1;
       }
+    },
+
+    reset : function(){
+      this.player1 =0;
+      this.player2 =0;
     }
   }
 
@@ -207,10 +212,29 @@ function pala(x,y){
   var timer = null;
 
   var sacar = document.getElementById("sacar");
+  var reiniciar = document.getElementById("reiniciar");
 
   var vel1 = document.getElementById("vel1");
   var vel2 = document.getElementById("vel2");
+  var vel3 = document.getElementById("vel3");
 
+
+  reiniciar.onclick = () => {
+    console.log("reiniciar")
+    bola.reset();
+    pala1.reset();
+    pala2.reset();
+    clearInterval(timer);
+    timer = null;
+    ctx.clearRect(0,0,canvas.width, canvas.height)
+    marcador.reset();
+    bola.draw();
+    campo.draw(ctx);
+    pala1.draw();
+    pala2.draw();
+    marcador.draw(ctx);
+
+  }
 
   vel1.onclick = () => {
     console.log("HAS ELEGIDO DIFICULTAD 1")
