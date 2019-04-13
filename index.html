@@ -7,25 +7,29 @@
     <script src="pong-01.js"> </script>
   </head>
   <body onload="main();">
+
   <div id = "game">
-   <img id= "image" src="screen-0.jpg">
-   <canvas id="display"></canvas>
-   <p id = "mark">Monica's GAME BOY</p>
-   <div class = "seccion1">
-     <div id = "derecha">
-       <p> START </p>
-      <button type="button" class = "button" id="sacar"></button>
-     </div>
-    <div id = "izquierda">
-     <p> RESET </p>
-     <button type="button" id="reiniciar"></button></div>
+
+    <img id= "image" src="text1.png">
+    <canvas id="display"></canvas>
+    <p id = "mark">Monica's GAME BOY</p>
+
+    <div class = "seccion1">
+      <div id = "derecha">
+        <p> START </p>
+        <button type="button" class = "button" id="sacar"></button>
+      </div>
+      <div id = "izquierda">
+        <p> RESET </p>
+        <button type="button" class = "button" id="reiniciar"></button></div>
+    </div>
+
+    <div class = "seccion2">
+      <p id = "dif"> Select your difficulty</p>
+      <button type="button" class = "button" id="vel1">EASY</button>
+      <button type="button" class = "button" id="vel2">MEDIUM</button>
+      <button type="button" class = "button" id="vel3">HARD</button>
+    </div>
   </div>
-  <div class = "seccion2">
-    <p id = "dif"> Select your difficulty</p>
-    <button type="button" id="vel1">EASY</button>
-    <button type="button" id="vel2">MEDIUM</button>
-    <button type="button" id="vel3">HARD</button>
- </div>
-</div>
   </body>
 </html>
