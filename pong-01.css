@@ -1,7 +1,70 @@
 body{
   margin-left: auto;
   margin-right: auto;
-  /*background-color: #E7E7E7;*/
+}
+
+/*Botones: sacar, reiniciar, vel1, vel2, vel3*/
+button{
+  background-color: #CC1027;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 8px;
+  color: black;
+  text-align: center;
+  padding: 3px 3px;
+  font-size: 18px;
+  margin: 5px 5px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+.button:hover {
+  background-color: #A8001F;
+  color:white;
+}
+
+#sacar, #reiniciar{
+  margin: -30px -30px;
+  width: 80px;
+  height: 30px;
+}
+#vel1, #vel2, #vel3{
+  margin: -15px 15px;
+  width: 100px;
+  height: 30px;
+}
+
+/*La gameboy en general*/
+#game{
+  width: 800px;
+  height: 1000px;
+  border: 3px outset black;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50px;
+  background-color: #D8D8D8;
+  box-shadow:30px 1px #565656;
+  border-style:groove;
+}
+
+/*Imagen del título*/
+#image{
+  width: 250px;
+  height: 70px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 30px;
+}
+
+/*Canvas*/
+#display{
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    background-color: black;
+    padding-top:0px;
 }
 
 #mark{
@@ -13,6 +76,8 @@ body{
   font-size: 15px
 }
 
+
+/*Seccion de los primeros botones*/
 .seccion1{
   margin-left: auto;
   margin-right: auto;
@@ -20,8 +85,8 @@ body{
   border: 3px outset black;
   border-radius: 50px;
   width: 500px;
-  height: 70px;
-  margin-top: 20px;
+  height: 80px;
+  margin-top: 10px;
 }
 
 #derecha{
@@ -52,6 +117,7 @@ body{
   font-size: 15px;
 }
 
+/*Seccion de los botones de abajo*/
 .seccion2{
   margin-left: auto;
   margin-right: auto;
@@ -67,64 +133,4 @@ body{
   letter-spacing: 2px;
   text-align: center;
   font-size: 15px;
-}
-
-
-#image{
-  width: 200px;
-  height: 50px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 60px;
-
-}
-
-#display{
-    padding-left: 0;
-    padding-right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    background-color: black;
-    padding-top:0px;
-}
-
-#game{
-  width: 800px;
-  height: 1000px;
-  border: 3px outset black;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 50px;
-  background-color: #D8D8D8;
-  box-shadow:30px 1px #565656;
-  border-style:groove;
-}
-
-button{
-  background-color: #CC1027;
-  color: black;
-  font-size: 20px;
-  cursor: pointer;
-  -webkit-transition-duration: 0.4s;
-  transition-duration: 0.4s;
-  border-radius: 10px;
-
-}
-
-#sacar, #reiniciar{
-  margin: -15px -15px;
-  width: 80px;
-  height: 30px;
-}
-
-#vel1, #vel2, #vel3{
-  margin: -15px 15px;
-  width: 100px;
-  height: 30px;
-}
-
-.button:hover {
-  background-color: #A8001F;
 }
